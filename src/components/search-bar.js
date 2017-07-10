@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import VideoList from './video-list'
 
 // const SearchBar = () => {
 //   return <input />;
@@ -9,19 +10,26 @@ class SearchBar extends Component {
     super(props);
 
     this.state = {
-      term: 'test'
+      term: ''
     };
   }
 
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })} />
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );
   }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
+  }
+
+
 
 }
 
